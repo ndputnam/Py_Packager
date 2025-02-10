@@ -18,3 +18,4 @@ if input('RUN BUILD?') == '':
         '--windowed',
         '--noconsole',
         '--clean'])
+
