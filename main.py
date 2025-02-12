@@ -1,15 +1,13 @@
-from json import dump
 from PyQt6.QtWidgets import QApplication
 from sys import argv, exit
+from builder import dir_check
 from main_window import MainWindow
-
-with open('specs/spec_list.json', 'w') as f:
-    dump(None, f)
 
 
 class PyPackager(QApplication):
     def __init__(self):
         super().__init__(argv)
+        dir_check()
         MainWindow().show()
         exit(self.exec())
 

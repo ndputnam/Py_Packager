@@ -1,10 +1,16 @@
-from typing import Union
-from os import PathLike
-import sys
-from os.path import dirname, abspath, join
+from os import PathLike, makedirs
+from os.path import dirname, abspath, join, exists
+from shutil import copytree, copyfile, rmtree
 from json import dump, load
-import shutil
 from pathlib import Path
+from typing import Union
+import sys
+
+def dir_check():
+    if not exists('specs'):
+        makedirs('specs')
+    with open('specs/spec_list.json', 'w') as f:
+        dump(None, f)
 
 def resource_path(relative_path:Union[str, PathLike]):
     """
@@ -72,13 +78,13 @@ class Builder:
         """
         dest_dir = self.specs['dest'][11:] + folder_path[folder_path.rfind('/'):]
         try:
-            shutil.copytree(Path(folder_path), Path(dest_dir))
+            copytree(Path(folder_path), Path(dest_dir))
             return True
         except WindowsError:
             if overwrite:
                 try:
-                    shutil.rmtree(Path(dest_dir))
-                    shutil.copytree(Path(folder_path), Path(dest_dir))
+                    rmtree(Path(dest_dir))
+                    copytree(Path(folder_path), Path(dest_dir))
                     return True
                 except Exception as e:
                     print('error %s' % e)
@@ -93,7 +99,7 @@ class Builder:
         """
         dest_dir = self.specs['dest'][11:] + file_path[file_path.rfind('/'):]
         try:
-            shutil.copyfile(Path(file_path), Path(dest_dir))
+            copyfile(Path(file_path), Path(dest_dir))
             return True
         except Exception as e:
             print('error %s' % e)

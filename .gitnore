@@ -1,3 +1,0 @@
-*.spec
-*.json
-!specs/spec_list.json
