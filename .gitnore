@@ -1,3 +1,3 @@
 *.spec
-specs/*.json
+*.json
 !specs/spec_list.json
