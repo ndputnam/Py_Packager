@@ -1,10 +1,11 @@
+import sys
+from json import dump, load
 from os import PathLike, makedirs
 from os.path import dirname, abspath, join, exists
-from shutil import copytree, copyfile, rmtree
-from json import dump, load
 from pathlib import Path
+from shutil import copytree, copyfile, rmtree
 from typing import Union
-import sys
+
 
 def dir_check():
     if not exists('specs'):

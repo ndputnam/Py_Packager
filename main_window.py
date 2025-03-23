@@ -1,11 +1,13 @@
-from builder import Builder, resource_path
-from stylesheets import *
-from os import listdir, remove
 from json import dump
-from PyQt6.QtGui import QAction, QKeySequence, QIcon
+from os import listdir, remove
+
 from PyQt6.QtCore import Qt, QProcess
+from PyQt6.QtGui import QAction, QKeySequence, QIcon
 from PyQt6.QtWidgets import (QComboBox, QLineEdit, QMainWindow, QPushButton, QToolBar,
                              QMessageBox, QFileDialog, QMenu, QPlainTextEdit, QProgressBar)
+
+from builder import Builder, resource_path
+from stylesheets import *
 
 
 class MainWindow(QMainWindow):
@@ -327,6 +329,7 @@ class MainWindow(QMainWindow):
                 self.progress.setValue(val)
             else:
                 self.progress.setValue(100)
+        #          add animation or effect to bar if at 100% and still installing...
         except (TypeError, ValueError):
             pass
         self.readout.appendPlainText(stderr)

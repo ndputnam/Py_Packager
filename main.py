@@ -1,7 +1,12 @@
-from PyQt6.QtWidgets import QApplication
+from os import makedirs
 from sys import argv, exit
+
+from PyQt6.QtWidgets import QApplication
+
 from builder import dir_check
 from main_window import MainWindow
+
+makedirs('specs', exist_ok=True)
 
 
 class PyPackager(QApplication):

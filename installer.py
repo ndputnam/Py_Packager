@@ -1,5 +1,7 @@
 from json import load
+
 import PyInstaller.__main__
+
 
 def install():
     try:
